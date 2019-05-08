@@ -6,10 +6,8 @@ import fetchSongs from '../queries/fetchSongs';
 
 class SongList extends React.Component {
   onSongDelete(id) {
-    this.props.mutate({
-      variables: {id},
-      refetchQueries:[{query: fetchSongs}]
-    });
+    this.props.mutate({ variables: {id} })
+      .then(() => this.props.data.refetch());
   }
 1
   renderSongs() {
@@ -17,7 +15,7 @@ class SongList extends React.Component {
         return (
         <li key={id} className="collection-item">
           {title}
-          <i className="material-icons right" onClick={()=> this.onSongDelete(id)}>delete</i>
+          <i className="material-icons" onClick={()=> this.onSongDelete(id)}>delete</i>
         </li>
       )
     });
