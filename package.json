@@ -1,11 +1,11 @@
 {
   "name": "lyrical",
   "version": "1.0.0",
-  "description": "Starter point for a graphQL course",
+  "description": "This app will allow you to match Lyrics with a Music.",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/StephenGrider/Lyrical-GraphQL"
+    "url": "https://github.com/CesarCedanoV/lyric_match_app.git"
   },
   "scripts": {
     "dev": "nodemon index.js --ignore client"
@@ -26,6 +26,7 @@
     "express-graphql": "^0.6.1",
     "express-session": "^1.15.0",
     "graphql": "^0.12.0",
+    "graphql-tag": "^2.10.1",
     "html-webpack-plugin": "^2.26.0",
     "lodash": "^4.17.4",
     "mongoose": "^4.7.8",
