@@ -4,8 +4,18 @@ import gql from 'graphql-tag';
 
 class LyricList extends React.Component{
 
-  onLike(id) {
-    this.props.mutate({ variables: { id }});
+  onLike(id, likes) {
+    this.props.mutate({ 
+      variables: { id },
+      optimisticResponse: {
+        __typename: 'Mutation',
+        likeLyric:{
+          id: id,
+          __typename:'LyricType',
+          likes: likes + 1
+        }
+      }
+    });
   }
 
   renderLyrics() {
@@ -13,11 +23,11 @@ class LyricList extends React.Component{
       return (
         <li key={id} className="collection-item">
           {content}
-          <div className="right">
+          <div className="vote-box">
             {likes > 0 ? `${likes} x ` : ''}
             <i 
               className="material-icons"
-              onClick={ () => this.onLike(id)}
+              onClick={ () => this.onLike(id, likes)}
             >thumb_up</i>       
           </div>
         </li>
