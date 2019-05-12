@@ -16,7 +16,8 @@ class LyricCreate extends React.Component{
         content: this.state.content,
         songId: this.props.songId
       }
-    }).then(() => this.setState({ content: '' }));
+    })
+    .then( () => this.setState({ content: '' } ));
   }
 
   render(){
@@ -25,7 +26,9 @@ class LyricCreate extends React.Component{
         <label>Add a Lyric</label>
         <input 
           value={this.state.content}
-          onChange={event => this.setState({content:event.target.value})}
+          onChange={event => this.setState({
+            content:event.target.value
+          })}
         />
       </form>
     );
@@ -35,9 +38,11 @@ class LyricCreate extends React.Component{
 const mutation = gql`
   mutation AddLyricToSong($songId: ID, $content: String){
     addLyricToSong(songId:$songId, content: $content){
-      title
+      id
       lyrics{
+        id
         content
+        likes
       }
     }
   }
